@@ -12,6 +12,7 @@
 
         searchEvent.fire();
     },
+
     clickClear: function(component, event, helper) {
             let name = component.set('v.Name', '');
             let city = component.set('v.City', '');
@@ -23,6 +24,7 @@
                    searchEvent.setParam("ClearFields", false);
                    searchEvent.fire();
     },
+
     clickNewAccount: function(component, event, helper) {
         let createContact = $A.get("e.force:createRecord");
         createContact.setParams({
