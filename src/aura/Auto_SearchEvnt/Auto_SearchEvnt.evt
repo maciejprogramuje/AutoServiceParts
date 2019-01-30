@@ -2,4 +2,5 @@
     <aura:attribute name="Name" type="String"/>
     <aura:attribute name="City" type="String"/>
     <aura:attribute name="Country" type="String"/>
+    <aura:attribute name="ClearFields" type="Boolean"/>
 </aura:event>

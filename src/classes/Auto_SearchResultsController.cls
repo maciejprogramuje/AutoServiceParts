@@ -1,7 +1,7 @@
 public with sharing class Auto_SearchResultsController {
     @AuraEnabled
     public static List<Account> getAccounts(String name, String city, String country) {
-        /*String query = '';
+        String query = '';
         String baseQuery = 'SELECT Id, OwnerId, ParentId, AccountNumber, Site, Type, Industry, AnnualRevenue, ' +
                 'Name, BillingLatitude, BillingLongitude, BillingCity, BillingCountry, BillingStreet, BillingState, BillingPostalCode, ' +
                 'Rating, Phone, Fax, Website, TickerSymbol, Ownership, NumberOfEmployees, Sic FROM Account';
@@ -11,15 +11,12 @@ public with sharing class Auto_SearchResultsController {
         } else if (String.isNotBlank(city)) {
             query = baseQuery + ' WHERE BillingCity LIKE \'' + city + '%\'' + addToWhereIfNotBlank('BillingCountry', country);
         } else if (String.isNotBlank(country)) {
-            query = baseQuery + ' WHERE BillingCountry = \'' + country + '\'';
+            query = baseQuery + ' WHERE BillingCountry LIKE \'' + country + '%\'';
         }
 
         List<Account> accounts = Database.query(query);
 
-        return accounts;*/
-
-        String query = 'SELECT Id, Name, BillingCity, BillingCountry, BillingLatitude, BillingLongitude FROM Account';
-        return Database.query(query);
+        return accounts;
     }
 
     private static String addToWhereIfNotBlank(String fieldName, String checkedField) {

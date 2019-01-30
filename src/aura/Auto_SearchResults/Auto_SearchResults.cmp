@@ -5,8 +5,8 @@
     <aura:attribute name="Name" type="String"/>
     <aura:attribute name="City" type="String"/>
     <aura:attribute name="Country" type="String"/>
-
     <aura:attribute name="Accounts" type="Account[]"/>
+    <aura:attribute name="ClearFields" type="Boolean" default="false"/>
 
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
