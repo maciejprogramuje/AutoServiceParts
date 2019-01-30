@@ -17,8 +17,6 @@
                console.log("SUCCESS");
                component.set("v.Accounts", response.getReturnValue());
 
-
-
                let searchToMapEvent = $A.get("e.c:Auto_SearchToMapEvent");
                searchToMapEvent.setParam("AccountsToMap", JSON.stringify(response.getReturnValue()));
                searchToMapEvent.fire();

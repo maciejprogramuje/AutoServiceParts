@@ -15,16 +15,15 @@
         let allMarkers = component.get("v.allMarkers");
         allMarkers.clearLayers();
 
-        map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
+        if(oneAccount.BillingLatitude != null && oneAccount.BillingLongitude != null) {
+            map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
 
-        allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
-            .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
-        component.set("v.allMarkers", allMarkers);
+                    allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
+                        .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
+                    component.set("v.allMarkers", allMarkers);
 
-        allMarkers.addTo(map);
-
-
-
+                    allMarkers.addTo(map);
+        }
 
         component.set("v.map", map);
    },
@@ -50,9 +49,6 @@
         component.set("v.allMarkers", group);
 
         group.addTo(map);
-
-
-
 
         map.fitBounds(group.getBounds());
 

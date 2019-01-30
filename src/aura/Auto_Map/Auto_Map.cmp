@@ -13,9 +13,6 @@
     <aura:handler event="c:Auto_DepartmentResultsEvent"
                   action="{!c.handleOneDepartment}"/>
 
-
-
-
     <aura:handler event="c:Auto_SearchToMapEvent"
                   action="{!c.handleDisplayAllDepartments}"/>
 
