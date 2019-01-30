@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes"
+                access="global"
+                description="Auto_DepartmentDetails">
+
+    <aura:attribute name="OneAccount" type="Account"/>
+
+    <aura:handler event="c:Auto_DepartmentResultsEvent"
+                  action="{!c.handleOneDepartment}"/>
+
+    <h1>Details</h1>
+    <p>{!v.OneAccount.Name}</p>
+
+</aura:component>

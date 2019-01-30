@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Auto_SearchToMapEvent">
+    <aura:attribute name="AccountsToMap" type="String"/>
+</aura:event>

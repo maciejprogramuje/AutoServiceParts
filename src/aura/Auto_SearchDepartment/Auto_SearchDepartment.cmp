@@ -1,0 +1,45 @@
+<aura:component description="Auto_SearchDepartment"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="Name" type="String"/>
+    <aura:attribute name="City" type="String"/>
+    <aura:attribute name="Country" type="String"/>
+
+    <aura:registerEvent name="searchEvent" type="c:Auto_SearchEvnt"/>
+
+    <lightning:card title="Search Department">
+        <div aria-labelledby="newsearchform">
+            <fieldset class="slds-box slds-theme--default slds-container--small">
+                <form class="slds-form--stacked">
+                    <lightning:input aura:id="searchform" label="Country"
+                                     name="expense"
+                                     value="{!v.Country}"/>
+
+                    <lightning:input aura:id="searchform" label="City"
+                                     name="expensename"
+                                     value="{!v.City}"/>
+
+                    <lightning:input aura:id="searchform" label="Name"
+                                     name="expensename"
+                                     value="{!v.Name}"/>
+
+                    <lightning:button label="Search"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickSearch}"/>
+
+                    <lightning:button label="Clear"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickClear}"/>
+
+                    <lightning:button label="New"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickNew}"/>
+                </form>
+            </fieldset>
+        </div>
+    </lightning:card>
+
+</aura:component>

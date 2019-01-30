@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Auto_DepartmentResultsEvent">
+    <aura:attribute name="OneAccount" type="Account"/>
+</aura:event>

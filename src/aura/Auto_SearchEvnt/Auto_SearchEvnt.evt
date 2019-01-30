@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Auto_SearchEvnt">
+    <aura:attribute name="Name" type="String"/>
+    <aura:attribute name="City" type="String"/>
+    <aura:attribute name="Country" type="String"/>
+</aura:event>
