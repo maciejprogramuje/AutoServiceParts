@@ -31,7 +31,6 @@
    handleDisplayAllDepartments: function(component, event, helper){
         let allAccountsJson = event.getParam("AccountsToMap");
         let allAccounts = JSON.parse(allAccountsJson);
-
         let allMarkers = [];
 
         for(let i = 0; i < allAccounts.length; i++) {
@@ -56,16 +55,12 @@
    },
 
    handleSearchDepartment: function(component, event, helper){
-          let clearFields = event.getParam("ClearFields");
-          if(!clearFields){
-              let map = component.get("v.map");
+      let map = component.get("v.map");
+      let allMarkers = component.get("v.allMarkers");
+      allMarkers.clearLayers();
 
-              let allMarkers = component.get("v.allMarkers");
-                      allMarkers.clearLayers();
+      map.flyTo([51.5, -0.09], 2);
 
-              map.flyTo([51.5, -0.09], 2);
-
-              component.set("v.map", map);
-          }
+      component.set("v.map", map);
    }
 })

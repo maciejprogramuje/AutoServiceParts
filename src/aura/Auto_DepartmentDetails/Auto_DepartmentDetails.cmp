@@ -3,8 +3,8 @@
                 description="Auto_DepartmentDetails"
                 controller="Auto_SearchResultsController">
 
-    <aura:attribute name="OneAccount" type="Account"></aura:attribute>
-    <aura:attribute name="AccountId" type="String"></aura:attribute>
+    <aura:attribute name="OneAccount" type="Account"/>
+    <aura:attribute name="AccountId" type="String"/>
     <aura:attribute name="isOpenConfirmDialog" type="boolean" default="false"/>
 
     <aura:handler event="c:Auto_DepartmentResultsEvent"
@@ -57,11 +57,13 @@
                         </lightning:layout>
                     </div>
                 </div>
+
                 <aura:set attribute="actions">
+
                     <lightning:button label="Edit"
                                       class="slds-m-top--medium"
-                                      onclick="{!c.navigateToShopEdit}"
-                    />
+                                      onclick="{!c.navigateToShopEdit}" />
+
                     <lightning:button variant="destructive"
                                       class="slds-m-top--medium"
                                       label="Delete" onclick="{!c.openModel}" />
@@ -69,23 +71,30 @@
             </lightning:card>
         </lightning:recordViewForm>
     </aura:if>
+
     <aura:if isTrue="{!v.isOpenConfirmDialog}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
+
                 <header class="slds-modal__header">
                     <h1>Delete {!v.OneAccount.Name}</h1>
                 </header>
+
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <h1>Are you sure?</h1>
                 </div>
+
                 <footer class="slds-modal__footer">
+
                     <lightning:button variant="neutral"
                                       label="Cancel"
                                       title="Cancel"
                                       onclick="{! c.closeModel }"/>
-                    <lightning:button variant="neutral" label="Delete" onclick="{!c.deleteContacts}" />
 
+                    <lightning:button variant="neutral"
+                                      label="Delete"
+                                      onclick="{!c.deleteContacts}" />
                 </footer>
             </div>
         </section>

@@ -5,10 +5,6 @@
         let country = event.getParam("Country");
         let clearFields = event.getParam("ClearFields");
 
-       /* setTimeout(function(){
-            component.find("name-input").getElement().focus();
-        }, 100);*/
-
         if(!clearFields){
             component.set("v.Accounts", Array());
         } else {
