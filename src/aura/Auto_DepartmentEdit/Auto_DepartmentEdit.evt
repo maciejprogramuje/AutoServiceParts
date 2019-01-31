@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Auto_DepartmentEdit">
+    <aura:attribute name="OneAccount" type="Account"/>
+</aura:event>

@@ -36,6 +36,7 @@
          let selectedSection = event.currentTarget;
          let index = selectedSection.dataset.index;
          let oneAcc = component.get("v.Accounts")[index];
+         component.set("v.SelectedAccount",index);
 
          let detailsEvent = $A.get("e.c:Auto_DepartmentResultsEvent");
 
@@ -88,6 +89,16 @@
                 var state = response.getState();
                 if(state === "SUCCESS") {
                    component.set("v.Accounts", response.getReturnValue());
+
+                   let selectedAccount = component.get("v.SelectedAccount");
+                   let accountToSend = component.get("v.Accounts")[selectedAccount];
+
+                              let searchToMapEvent = $A.get("e.c:Auto_DepartmentEdit");
+                                                   console.log('searchToMapEvent'+ searchToMapEvent);
+
+                              searchToMapEvent.setParam("OneAccount", accountToSend);
+
+                              searchToMapEvent.fire();
                 }
             });
             $A.enqueueAction(search);

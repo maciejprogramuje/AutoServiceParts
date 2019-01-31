@@ -7,6 +7,7 @@
     <aura:attribute name="Country" type="String"/>
     <aura:attribute name="Accounts" type="Account[]"/>
     <aura:attribute name="ClearFields" type="Boolean" default="false"/>
+    <aura:attribute name="SelectedAccount" type="String"/>
 
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
@@ -22,6 +23,9 @@
 
     <aura:registerEvent name="searchToMapEvent"
                         type="c:Auto_SearchToMapEvent"/>
+
+    <aura:registerEvent name="departmentEditEvent"
+                        type="c:Auto_DepartmentEdit"/>
 
     <aura:if isTrue="{!!empty(v.Accounts)}">
         <lightning:card title="Department results">
