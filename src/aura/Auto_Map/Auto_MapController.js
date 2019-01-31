@@ -55,12 +55,12 @@
    },
 
    handleSearchDepartment: function(component, event, helper){
-      let map = component.get("v.map");
-      let allMarkers = component.get("v.allMarkers");
-      allMarkers.clearLayers();
+        let map = component.get("v.map");
+        let allMarkers = component.get("v.allMarkers");
+        allMarkers.clearLayers();
 
-      map.flyTo([51.5, -0.09], 2);
+        map.flyTo([51.5, -0.09], 2);
 
-      component.set("v.map", map);
+        component.set("v.map", map);
    }
 })

@@ -1,6 +1,6 @@
 ({
-handleOneDepartment: function(component, event, helper){
-            let oneAccount = event.getParam("OneAccount");
+    handleOneDepartment: function(component, event, helper){
+        let oneAccount = event.getParam("OneAccount");
         if(oneAccount.BillingLatitude == null && oneAccount.BillingLongitude == null) {
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
@@ -12,39 +12,37 @@ handleOneDepartment: function(component, event, helper){
         }
         component.set("v.OneAccount", oneAccount);
         component.set("v.AccountId", oneAccount.Id);
-     },
-     navToRecord : function (component, event, helper) {
-            var navEvt = $A.get("e.force:navigateToSObject");
-            navEvt.setParams({
-                "recordId": component.get("v.AccountId")
-            });
-            navEvt.fire();
-     },
-     navigateToShopEdit : function (component) {
-                      console.log('navigateToShopEdit1');
-     let navigateEvt = $A.get("e.force:editRecord");
-         navigateEvt.setParams({
-             "recordId": component.get("v.AccountId")
-         });
-         navigateEvt.fire();
-         console.log('navigateToShopEdit2');
+    },
 
-         let searchEvent1 = $A.get("e.c:Auto_DepartmentDeleteEvent");
-         console.log('searchEvent >> '+ searchEvent1);
-         searchEvent1.fire();
-         console.log('navigateToShopEdit');
- },
- openModel: function(component, event, helper) {
-      component.set("v.isOpenConfirmDialog", true);
- },
- closeModel: function(component, event, helper) {
-    component.set("v.isOpenConfirmDialog", false);
- },
- deleteContacts: function(component, event, helper) {
+    navToRecord : function (component, event, helper) {
+        var navEvt = $A.get("e.force:navigateToSObject");
+        navEvt.setParams({
+            "recordId": component.get("v.AccountId")
+        });
+        navEvt.fire();
+    },
+
+    navigateToShopEdit : function (component) {
+        let navigateEvt = $A.get("e.force:editRecord");
+        navigateEvt.setParams({
+            "recordId": component.get("v.AccountId")
+        });
+        navigateEvt.fire();
+    },
+
+    openModel: function(component, event, helper) {
+        component.set("v.isOpenConfirmDialog", true);
+    },
+
+    closeModel: function(component, event, helper) {
+        component.set("v.isOpenConfirmDialog", false);
+    },
+
+    deleteContacts: function(component, event, helper) {
         let accountsToDelete = component.get("v.AccountId");
-        console.log('accountsToDelete'+ accountsToDelete);
         let toastEvent = $A.get('e.force:showToast');
         let deleteAction = component.get('c.deleteAccount');
+
         deleteAction.setParams({
             accountId: accountsToDelete
         });
@@ -61,8 +59,7 @@ handleOneDepartment: function(component, event, helper){
                           'message': dataMap.message
                       });
                       toastEvent.fire();
-                  }
-                  else if(dataMap.status=='error') {
+                  } else if(dataMap.status=='error') {
                       toastEvent.setParams({
                           'title': 'Error!',
                           'type': 'error',
@@ -71,26 +68,26 @@ handleOneDepartment: function(component, event, helper){
                       });
                       toastEvent.fire();
                   }
-              }
-              else {
+              } else {
                   alert('Error in getting data');
               }
         });
- $A.enqueueAction(deleteAction);
- component.set("v.isOpenConfirmDialog", false);
- component.set("v.OneAccount", {});
- component.set("v.AccountId", '');
 
- let searchEvent = $A.get("e.c:Auto_DepartmentDeleteEvent");
-  searchEvent.fire();
- },
+        $A.enqueueAction(deleteAction);
 
- handleSearchDepartment: function(component, event, helper){
-       let clearFields = event.getParam("ClearFields");
-       if(!clearFields){
-                 component.set("v.OneAccount", {});
-       component.set("v.AccountId", '');
-      }
+        component.set("v.isOpenConfirmDialog", false);
+        component.set("v.OneAccount", {});
+        component.set("v.AccountId", '');
 
- }
+        let searchEvent = $A.get("e.c:Auto_DepartmentDeleteEvent");
+        searchEvent.fire();
+    },
+
+    handleSearchDepartment: function(component, event, helper){
+        let clearFields = event.getParam("ClearFields");
+        if(!clearFields){
+            component.set("v.OneAccount", {});
+            component.set("v.AccountId", '');
+        }
+    }
  })

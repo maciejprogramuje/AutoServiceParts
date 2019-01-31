@@ -14,6 +14,9 @@
     <aura:handler event="c:Auto_DepartmentDeleteEvent"
                   action="{!c.handleDeleteDepartment}"/>
 
+    <aura:handler event="force:showToast"
+                  action="{!c.toastInfo}"/>
+
     <aura:registerEvent name="detailsDepartmentEvent"
                         type="c:Auto_DepartmentResultsEvent"/>
 

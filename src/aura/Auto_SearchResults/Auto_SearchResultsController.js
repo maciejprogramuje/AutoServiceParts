@@ -5,6 +5,10 @@
         let country = event.getParam("Country");
         let clearFields = event.getParam("ClearFields");
 
+        component.set("v.Name", name);
+        component.set("v.City", city);
+        component.set("v.Country", country);
+
         if(!clearFields){
             component.set("v.Accounts", Array());
         } else {
@@ -30,11 +34,8 @@
 
     clickShowDetails: function(component, event, helper) {
          let selectedSection = event.currentTarget;
-         let index1 = selectedSection.dataset.index;
-
-         console.log("index1 >> "+index1);
-
-         let oneAcc = component.get("v.Accounts")[index1];
+         let index = selectedSection.dataset.index;
+         let oneAcc = component.get("v.Accounts")[index];
 
          let detailsEvent = $A.get("e.c:Auto_DepartmentResultsEvent");
 
@@ -44,10 +45,9 @@
     },
 
     handleDeleteDepartment: function(component, event, helper) {
-            console.log('start even handleDeleteDepartment');
-             let name = component.get("v.Name");
-             let city = component.get("v.City");
-             let country = component.get("v.Country");
+         let name = component.get("v.Name");
+         let city = component.get("v.City");
+         let country = component.get("v.Country");
 
          let action = component.get("c.getAccounts");
          action.setParam("name", name);
@@ -60,15 +60,37 @@
                   console.log("SUCCESS");
                   component.set("v.Accounts", response.getReturnValue());
 
-                  let searchToMapEvent = $A.get("e.c:AutoParts_SearchToMapEvent");
+                  let searchToMapEvent = $A.get("e.c:Auto_SearchToMapEvent");
                   searchToMapEvent.setParam("AccountsToMap", JSON.stringify(response.getReturnValue()));
                   searchToMapEvent.fire();
-              }
-              else {
-                  console.log("Failed with state: " + state);
+              } else {
+                  console.log("handleDeleteDepartment Failed with state: " + state);
               }
          });
          $A.enqueueAction(action);
-                 console.log('cancel');
+    },
+
+    toastInfo: function(component, event, helper) {
+        var toastMessageParams = event.getParams();
+        var message = toastMessageParams.message;
+        if (message.includes('was saved')) {
+            let name = component.get("v.Name");
+            let city = component.get("v.City");
+            let country = component.get("v.Country");
+
+            let search = component.get("c.getAccounts");
+
+            search.setParam("name", name);
+            search.setParam("city", city);
+            search.setParam("country", country);
+
+            search.setCallback(this, function(response) {
+                var state = response.getState();
+                if(state === "SUCCESS") {
+                   component.set("v.Accounts", response.getReturnValue());
+                }
+            });
+            $A.enqueueAction(search);
+        }
     }
 })
