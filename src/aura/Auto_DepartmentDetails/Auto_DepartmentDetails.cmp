@@ -13,7 +13,6 @@
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
 
-
     <aura:registerEvent name="deleteDepartmentEvent"
                         type="c:Auto_DepartmentDeleteEvent"/>
 
