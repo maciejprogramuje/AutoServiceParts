@@ -560,6 +560,10 @@
                             <option name="name" value="Auto_SearchToMapEvent" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_DepartmentDeleteEvent" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="AuraDefinitionBundle" />

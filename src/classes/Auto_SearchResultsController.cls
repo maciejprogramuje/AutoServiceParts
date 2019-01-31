@@ -29,7 +29,11 @@ public with sharing class Auto_SearchResultsController {
 
     @AuraEnabled
     public static Account updateAccount(Account account) {
-        upsert account;
+        try{
+            upsert account;
+        } catch (Exception e) {
+            System.debug(e.getMessage());
+        }
         return account;
     }
 

@@ -53,5 +53,19 @@
         map.fitBounds(group.getBounds());
 
         component.set("v.map", map);
+   },
+
+   handleSearchDepartment: function(component, event, helper){
+          let clearFields = event.getParam("ClearFields");
+          if(!clearFields){
+              let map = component.get("v.map");
+
+              let allMarkers = component.get("v.allMarkers");
+                      allMarkers.clearLayers();
+
+              map.flyTo([51.5, -0.09], 2);
+
+              component.set("v.map", map);
+          }
    }
 })

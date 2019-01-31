@@ -11,6 +11,9 @@
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
 
+    <aura:handler event="c:Auto_DepartmentDeleteEvent"
+                  action="{!c.handleDeleteDepartment}"/>
+
     <aura:registerEvent name="detailsDepartmentEvent"
                         type="c:Auto_DepartmentResultsEvent"/>
 
@@ -29,12 +32,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <aura:iteration items="{!v.Accounts}" var="account" indexVar="ind">
+                <aura:iteration items="{!v.Accounts}"
+                                var="account"
+                                indexVar="ind">
                     <tr class="slds-hint-parent" id="{!ind}" onclick="{!c.clickShowDetails}" data-index="{!ind}">
-                        <th scope="row"><div class="slds-truncate" title="{!account.Id}">{!account.Id}</div></th>
-                        <td><div class="slds-truncate" title="{!account.Name}">{!account.Name}</div></td>
-                        <td><div class="slds-truncate" title="{!account.BillingCity}">{!account.BillingCity}</div></td>
-                        <td><div class="slds-truncate" title="{!account.BillingCountry}">{!account.BillingCountry}</div></td>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!account.Id}">{!account.Id}</div>
+                        </th>
+                        <td>
+                            <div class="slds-truncate" title="{!account.Name}">{!account.Name}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title="{!account.BillingCity}">{!account.BillingCity}</div>
+                        </td>
+                        <td>
+                            <div class="slds-truncate" title="{!account.BillingCountry}">{!account.BillingCountry}</div>
+                        </td>
                     </tr>
                 </aura:iteration>
                 </tbody>
