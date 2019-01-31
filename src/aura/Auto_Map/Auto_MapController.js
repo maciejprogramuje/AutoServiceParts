@@ -19,7 +19,7 @@
             map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
 
                     allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
-                        .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
+                        .bindPopup(oneAccount.Name + ", " + oneAccount.BillingCity + ", " + oneAccount.BillingCountry)]);
                     component.set("v.allMarkers", allMarkers);
 
                     allMarkers.addTo(map);
@@ -36,7 +36,7 @@
         for(let i = 0; i < allAccounts.length; i++) {
             if(allAccounts[i].BillingLongitude != null && allAccounts[i].BillingLatitude != null) {
                 let marker = L.marker([allAccounts[i].BillingLatitude, allAccounts[i].BillingLongitude])
-                                .bindPopup(allAccounts[i].BillingCity + " " + allAccounts[i].BillingCountry);
+                                .bindPopup(allAccounts[i].Name + ", " + allAccounts[i].BillingCity + ", " + allAccounts[i].BillingCountry);
 
                 allMarkers.push(marker);
             }
@@ -74,7 +74,7 @@
             if(oneAccount.BillingLatitude != null && oneAccount.BillingLongitude != null) {
                 map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
                 allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
-                    .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
+                    .bindPopup(oneAccount.Name + ", " + oneAccount.BillingCity + ", " + oneAccount.BillingCountry)]);
                 component.set("v.allMarkers", allMarkers);
 
                 allMarkers.addTo(map);

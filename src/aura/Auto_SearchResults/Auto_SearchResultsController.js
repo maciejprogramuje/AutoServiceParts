@@ -32,10 +32,20 @@
         }
     },
 
+
+
+
     clickShowDetails: function(component, event, helper) {
          let selectedSection = event.currentTarget;
          let index = selectedSection.dataset.index;
+
          let oneAcc = component.get("v.Accounts")[index];
+
+            var cmpTarget = component.find('aaa');
+            console.log("cmpTarget >> "+cmpTarget);
+         $A.util.addClass(cmpTarget, 'changeMe');
+
+
          component.set("v.SelectedAccount",index);
 
          let detailsEvent = $A.get("e.c:Auto_DepartmentResultsEvent");
@@ -44,6 +54,12 @@
 
          detailsEvent.fire();
     },
+
+
+
+
+
+
 
     handleDeleteDepartment: function(component, event, helper) {
          let name = component.get("v.Name");
