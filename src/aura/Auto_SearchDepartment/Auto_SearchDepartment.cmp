@@ -8,34 +8,35 @@
     <aura:registerEvent name="searchEvent" type="c:Auto_SearchEvnt"/>
 
     <lightning:card title="Department search">
-
-        <fieldset class="slds-box slds-theme--default slds-container--small">
-            <form class="slds-form--stacked">
-                <lightning:input aura:id="searchForm"
-                                 label="Name"
-                                 name="expensename"
-                                 value="{!v.Name}"
-                                 placeholder="Name"/>
-                <lightning:input aura:id="searchForm"
-                                 label="City"
-                                 name="expenseamount"
-                                 value="{!v.City}"
-                                 placeholder="City"/>
-                <lightning:input aura:id="searchForm"
-                                 label="Country"
-                                 name="expenseclient"
-                                 value="{!v.Country}"
-                                 placeholder="Country"/>
-                <lightning:button label="Search"
-                                  class="slds-m-top--medium"
-                                  variant="brand"
-                                  onclick="{!c.clickSearch}"/>
-                <lightning:button label="Clear"
-                                  class="slds-m-top--medium"
-                                  variant="brand"
-                                  onclick="{!c.clickClear}"/>
-            </form>
-        </fieldset>
+        <div class="slds-m-left--small">
+            <fieldset class="slds-box slds-theme--default slds-container--small">
+                <form class="slds-form--stacked">
+                    <lightning:input aura:id="searchForm"
+                                     label="Name"
+                                     name="expensename"
+                                     value="{!v.Name}"
+                                     placeholder="Name"/>
+                    <lightning:input aura:id="searchForm"
+                                     label="City"
+                                     name="expenseamount"
+                                     value="{!v.City}"
+                                     placeholder="City"/>
+                    <lightning:input aura:id="searchForm"
+                                     label="Country"
+                                     name="expenseclient"
+                                     value="{!v.Country}"
+                                     placeholder="Country"/>
+                    <lightning:button label="Search"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickSearch}"/>
+                    <lightning:button label="Clear"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      onclick="{!c.clickClear}"/>
+                </form>
+            </fieldset>
+        </div>
 
         <aura:set attribute="actions">
             <lightning:button label="New"
