@@ -14,7 +14,8 @@
                   action="{!c.handleSearchDepartment}"/>
 
 
-    <aura:registerEvent name="deleteDepartmentEvent" type="c:Auto_DepartmentDeleteEvent"/>
+    <aura:registerEvent name="deleteDepartmentEvent"
+                        type="c:Auto_DepartmentDeleteEvent"/>
 
     <aura:if isTrue="{!!empty(v.OneAccount)}">
         <lightning:recordViewForm aura:id="editForm" recordId="{!v.OneAccount.Id}" objectApiName="Account">

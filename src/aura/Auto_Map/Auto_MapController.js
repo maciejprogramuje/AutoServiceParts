@@ -66,20 +66,18 @@
 
    toastInfo2: function(component, event, helper){
         let oneAccount = event.getParam("OneAccount");
-              component.set("v.OneAccount", oneAccount);
-              let map = component.get("v.map");
-              let allMarkers = component.get("v.allMarkers");
-              allMarkers.clearLayers();
-              console.log('oneAccount.BillingLatitude' + oneAccount.BillingLatitude);
-              console.log('oneAccount.BillingLatitude' + oneAccount.BillingCity);
+            component.set("v.OneAccount", oneAccount);
+            let map = component.get("v.map");
+            let allMarkers = component.get("v.allMarkers");
+            allMarkers.clearLayers();
 
-              if(oneAccount.BillingLatitude != null && oneAccount.BillingLongitude != null) {
-                        map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
-                      allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
-                          .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
-                      component.set("v.allMarkers", allMarkers);
+            if(oneAccount.BillingLatitude != null && oneAccount.BillingLongitude != null) {
+                map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
+                allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
+                    .bindPopup(oneAccount.BillingCity + " " + oneAccount.BillingCountry)]);
+                component.set("v.allMarkers", allMarkers);
 
-                      allMarkers.addTo(map);
+                allMarkers.addTo(map);
           }
           component.set("v.map", map);
       }
