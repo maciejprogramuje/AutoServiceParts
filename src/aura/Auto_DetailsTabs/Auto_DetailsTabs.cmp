@@ -1,0 +1,19 @@
+<aura:component implements="flexipage:availableForAllPageTypes"
+                description="Auto_DetailsTabs">
+
+    <aura:attribute name="OneAccount" type="Account"/>
+
+    <aura:handler event="c:Auto_DepartmentResultsEvent"
+                  action="{!c.handleOneDepartment2}"/>
+
+    <aura:if isTrue="{!not(empty(v.OneAccount))}">
+        <lightning:tabset selectedTabId="departmentsDetails">
+            <lightning:tab label="Department's details" id="departmentsDetails">
+                <c:Auto_DepartmentDetails OneAccount="{!v.OneAccount}"/>
+            </lightning:tab>
+            <lightning:tab label="Department's Employees" id="departmentsEmployees">
+                Two Content!
+            </lightning:tab>
+        </lightning:tabset>
+    </aura:if>
+</aura:component>

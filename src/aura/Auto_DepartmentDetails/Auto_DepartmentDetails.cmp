@@ -7,8 +7,7 @@
     <aura:attribute name="AccountId" type="String"/>
     <aura:attribute name="isOpenConfirmDialog" type="boolean" default="false"/>
 
-    <aura:handler event="c:Auto_DepartmentResultsEvent"
-                  action="{!c.handleOneDepartment}"/>
+
 
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
@@ -16,7 +15,7 @@
     <aura:registerEvent name="deleteDepartmentEvent"
                         type="c:Auto_DepartmentDeleteEvent"/>
 
-    <aura:if isTrue="{!!empty(v.OneAccount)}">
+
         <lightning:recordViewForm aura:id="editForm" recordId="{!v.OneAccount.Id}" objectApiName="Account">
             <lightning:card iconName="standard:account" title="Details" >
                 <div class="slds-media slds-m-around_small">
@@ -70,7 +69,7 @@
                 </aura:set>
             </lightning:card>
         </lightning:recordViewForm>
-    </aura:if>
+
 
     <aura:if isTrue="{!v.isOpenConfirmDialog}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
