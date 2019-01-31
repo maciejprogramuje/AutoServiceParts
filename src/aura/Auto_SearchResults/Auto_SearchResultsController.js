@@ -13,38 +13,42 @@
             component.set("v.Accounts", Array());
         } else {
             let search = component.get("c.getAccounts");
-                    search.setParam("name", name);
-                    search.setParam("city", city);
-                    search.setParam("country", country);
+            search.setParam("name", name);
+            search.setParam("city", city);
+            search.setParam("country", country);
 
-                    search.setCallback(this, function(response) {
-                        var state = response.getState();
-                        if(state === "SUCCESS") {
-                           console.log("SUCCESS");
-                           component.set("v.Accounts", response.getReturnValue());
+            search.setCallback(this, function(response) {
+                var state = response.getState();
+                if(state === "SUCCESS") {
+                   console.log("SUCCESS");
+                   component.set("v.Accounts", response.getReturnValue());
 
-                           let searchToMapEvent = $A.get("e.c:Auto_SearchToMapEvent");
-                           searchToMapEvent.setParam("AccountsToMap", JSON.stringify(response.getReturnValue()));
-                           searchToMapEvent.fire();
-                        }
-                    });
-                    $A.enqueueAction(search);
+                   let searchToMapEvent = $A.get("e.c:Auto_SearchToMapEvent");
+                   searchToMapEvent.setParam("AccountsToMap", JSON.stringify(response.getReturnValue()));
+                   searchToMapEvent.fire();
+                }
+            });
+            $A.enqueueAction(search);
         }
     },
 
-
-
-
     clickShowDetails: function(component, event, helper) {
          let selectedSection = event.currentTarget;
-         let index = selectedSection.dataset.index;
+         let index = parseInt(selectedSection.dataset.index);
 
          let oneAcc = component.get("v.Accounts")[index];
 
-            var cmpTarget = component.find('aaa');
-            console.log("cmpTarget >> "+cmpTarget);
-         $A.util.addClass(cmpTarget, 'changeMe');
+         let i = 0;
+         let allAcc = component.get("v.Accounts");
+         allAcc.forEach(function (acc) {
+             if(i != index) {
+                 document.getElementById(i).classList.remove("changeMe");
+             } else {
+                 document.getElementById(i).classList.add("changeMe");
+             }
 
+             ++i;
+         })
 
          component.set("v.SelectedAccount",index);
 
@@ -54,12 +58,6 @@
 
          detailsEvent.fire();
     },
-
-
-
-
-
-
 
     handleDeleteDepartment: function(component, event, helper) {
          let name = component.get("v.Name");
