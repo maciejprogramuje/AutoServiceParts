@@ -270,6 +270,10 @@
                             <option name="name" value="Auto_SearchResultsController" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchEmployeesController" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
@@ -570,6 +574,14 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="Auto_DetailsTabs" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_Employees" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_Spinner" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>

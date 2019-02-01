@@ -26,10 +26,23 @@
     },
 
     clickNewAccount: function(component, event, helper) {
-        let createContact = $A.get("e.force:createRecord");
+        /*let createContact = $A.get("e.force:createRecord");
         createContact.setParams({
             "entityApiName": "Account"
         });
-        createContact.fire();
+        createContact.fire();*/
+
+        var windowHash = window.location.hash;
+        var createRecordEvent = $A.get("e.force:createRecord");
+        createRecordEvent.setParams({
+            "entityApiName": "Account",
+            "defaultFieldValues": {
+                 'Name' : component.get('v.accName')
+             },
+             "panelOnDestroyCallback": function(event){
+                  window.location.hash = windowHash;
+              }
+        });
+        createRecordEvent.fire();
     }
 })

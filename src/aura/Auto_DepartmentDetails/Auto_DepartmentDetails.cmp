@@ -7,8 +7,6 @@
     <aura:attribute name="AccountId" type="String"/>
     <aura:attribute name="isOpenConfirmDialog" type="boolean" default="false"/>
 
-
-
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
 
@@ -16,59 +14,59 @@
                         type="c:Auto_DepartmentDeleteEvent"/>
 
 
-        <lightning:recordViewForm aura:id="editForm" recordId="{!v.OneAccount.Id}" objectApiName="Account">
-            <lightning:card iconName="standard:account" title="Details" >
-                <div class="slds-media slds-m-around_small">
-                    <div class="slds-media__body">
-                        <lightning:layout class="slds-hint-parent">
-                            <a onclick="{!c.navToRecord}">
-                                <h3 class="slds-text-heading_small slds-m-bottom_xx-small"><lightning:outputField fieldName="Name"/></h3>
-                            </a>
-                        </lightning:layout>
-                        <lightning:layout multipleRows="true">
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Name"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Phone"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Fax"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="AccountNumber"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Website"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Site"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingCity"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingCountry"/></div>
-                            </lightning:layoutItem>
-                            <lightning:layoutItem padding="around-small" size="6">
-                                <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingStreet"/></div>
-                            </lightning:layoutItem>
-                        </lightning:layout>
-                    </div>
+    <lightning:recordViewForm aura:id="editForm" recordId="{!v.OneAccount.Id}" objectApiName="Account">
+        <lightning:card iconName="standard:account" title="Details" >
+            <div class="slds-media slds-m-around_small">
+                <div class="slds-media__body">
+                    <lightning:layout class="slds-hint-parent">
+                        <a onclick="{!c.navToRecord}">
+                            <h3 class="slds-text-heading_small slds-m-bottom_xx-small"><lightning:outputField fieldName="Name"/></h3>
+                        </a>
+                    </lightning:layout>
+                    <lightning:layout multipleRows="true">
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Name"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Phone"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Fax"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="AccountNumber"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Website"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Site"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingCity"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingCountry"/></div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem padding="around-small" size="6">
+                            <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="BillingStreet"/></div>
+                        </lightning:layoutItem>
+                    </lightning:layout>
                 </div>
+            </div>
 
-                <aura:set attribute="actions">
+            <aura:set attribute="actions">
 
-                    <lightning:button label="Edit"
-                                      class="slds-m-top--medium"
-                                      onclick="{!c.navigateToShopEdit}" />
+                <lightning:button label="Edit"
+                                  class="slds-m-top--medium"
+                                  onclick="{!c.navigateToShopEdit}" />
 
-                    <lightning:button variant="destructive"
-                                      class="slds-m-top--medium"
-                                      label="Delete" onclick="{!c.openModel}" />
-                </aura:set>
-            </lightning:card>
-        </lightning:recordViewForm>
+                <lightning:button variant="destructive"
+                                  class="slds-m-top--medium"
+                                  label="Delete" onclick="{!c.openModel}" />
+            </aura:set>
+        </lightning:card>
+    </lightning:recordViewForm>
 
 
     <aura:if isTrue="{!v.isOpenConfirmDialog}">

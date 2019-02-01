@@ -1,0 +1,84 @@
+<aura:component description="Auto_Employees"
+                implements="flexipage:availableForAllPageTypes"
+                controller="Auto_SearchEmployeesController">
+
+    <aura:attribute name="OneAccount" type="Account"/>
+    <aura:attribute name="Employees" type="EmployeesInDepartments__c[]"/>
+    <aura:attribute name="Users" type="User[]"/>
+    <aura:attribute name="IsOpenNewEmployees" type="Boolean"/>
+
+    <aura:handler event="c:Auto_DepartmentResultsEvent"
+                  action="{!c.handleEmployeesFromDepartment}"/>
+
+    <lightning:card title="Employees">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-text-heading_label">
+                    <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                </tr>
+            </thead>
+                <tbody>
+                    <aura:iteration items="{!v.Employees}"
+                                    var="sel"
+                                    indexVar="ind">
+                        <tr class="slds-hint-parent" id="{!ind}" onclick="{!c.clickShowDetails}" data-index="{!ind}">
+                            <td>
+                                <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+        </table>
+
+        <aura:set attribute="actions">
+
+            <lightning:button variant="destructive"
+                              class="slds-m-top--medium"
+                              label="Add" onclick="{!c.openModal}" />
+        </aura:set>
+    </lightning:card>
+
+    <aura:if isTrue="{!v.IsOpenNewEmployees}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h1>Hire to {!v.OneAccount.Name}</h1>
+                </header>
+
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-text-heading_label">
+                            <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.Users}"
+                                        var="us"
+                                        indexVar="ind">
+                            <tr class="slds-hint-parent" id="{!ind}" onclick="{!c.clickShowDetails}" data-index="{!ind}">
+                                <td>
+                                    <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+
+                <footer class="slds-modal__footer">
+
+                    <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeModal }"/>
+
+                    <lightning:button variant="neutral"
+                                      label="Delete"
+                                      onclick="{!c.newEmployee}" />
+                </footer>
+            </div>
+        </section>
+    </aura:if>
+
+</aura:component>

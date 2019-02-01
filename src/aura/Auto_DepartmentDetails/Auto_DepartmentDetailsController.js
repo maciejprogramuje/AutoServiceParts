@@ -25,7 +25,7 @@
     navigateToShopEdit : function (component) {
         let navigateEvt = $A.get("e.force:editRecord");
         navigateEvt.setParams({
-            "recordId": component.get("v.AccountId")
+            "recordId": component.get("v.OneAccount.Id")
         });
         navigateEvt.fire();
     },

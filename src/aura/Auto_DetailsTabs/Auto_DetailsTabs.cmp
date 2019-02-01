@@ -12,7 +12,7 @@
                 <c:Auto_DepartmentDetails OneAccount="{!v.OneAccount}"/>
             </lightning:tab>
             <lightning:tab label="Department's Employees" id="departmentsEmployees">
-                Two Content!
+                <c:Auto_Employees OneAccount="{!v.OneAccount}"/>
             </lightning:tab>
         </lightning:tabset>
     </aura:if>

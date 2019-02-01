@@ -58,4 +58,6 @@
         </lightning:card>
     </aura:if>
 
+    <c:Auto_Spinner aura:id="spinner"/>
+
 </aura:component>
