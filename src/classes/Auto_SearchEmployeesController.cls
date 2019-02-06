@@ -1,16 +1,13 @@
 public with sharing class Auto_SearchEmployeesController {
     @AuraEnabled
     public static List<EmployeesInDepartments__c> getEmployess(String departmentId) {
-        System.debug('employees');
-
         List<EmployeesInDepartments__c> employees = new List<EmployeesInDepartments__c>();
         try {
             employees = [SELECT Id, User__c, User__r.Name, Department__c, Department__r.Id FROM EmployeesInDepartments__c WHERE Department__r.Id = :departmentId];
-
-            System.debug(employees);
         } catch (Exception ex) {
             System.debug('Message after getEmployess' + ex.getMessage());
         }
+
         return employees;
     }
 

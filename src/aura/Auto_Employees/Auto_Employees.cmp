@@ -8,44 +8,53 @@
     <aura:attribute name="IsOpenNewEmployees" type="Boolean"/>
     <aura:attribute name="IsOpenDeleteModal" type="Boolean"/>
     <aura:attribute name="SelectedEmployeeId" type="String"/>
+    <aura:attribute name="SelectedEmployeeName" type="String"/>
 
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.handleEmployeesFromDepartment}" />
 
-    <aura:handler name="init" value="{!this}" action="{!c.handleEmployeesFromDepartment}" />
-    <aura:handler event="c:Auto_DepartmentResultsEvent" action="{!c.handleOneDepartment}"/>
-    <aura:handler name="change" value="{!v.OneAccount}" action="{!c.handleEmployeesFromDepartment}"/>
-    <aura:handler event="force:showToast" action="{!c.handleRefreshAfterToastInfo}" />
+    <aura:handler event="c:Auto_DepartmentResultsEvent"
+                  action="{!c.handleOneDepartment}"/>
 
+    <aura:handler name="change"
+                  value="{!v.OneAccount}"
+                  action="{!c.handleEmployeesFromDepartment}"/>
 
+    <aura:handler event="force:showToast"
+                  action="{!c.handleRefreshAfterToastInfo}" />
 
-    <lightning:card title="Employees">
+    <lightning:card title="{!$Label.c.Auto_Employees}">
         <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
             <thead>
-            <tr class="slds-text-heading_label">
-                <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
-                <th scope="col"><div class="slds-truncate" title="Action">Action</div></th>
-            </tr>
-            </thead>
-            <tbody>
-            <aura:iteration items="{!v.Employees}"
-                            var="sel"
-                            indexVar="ind">
-                <tr class="slds-hint-parent" onclick="{!c.setCurrentId}" data-id="{!sel.Id}" id="{!sel.Id}">
-                    <td>
-                        <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
-                    </td>
-                    <td>
-                        <lightning:button variant="destructive"
-                                          label="Remove employee"
-                                          onclick="{!c.openDeleteModel}" />
-                    </td>
+                <tr class="slds-text-heading_label">
+                    <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
+                    <th></th>
                 </tr>
-            </aura:iteration>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.Employees}"
+                                var="sel"
+                                indexVar="ind">
+                    <tr class="slds-hint-parent" onclick="{!c.setCurrentId}" data-id="{!sel.Id}" id="{!sel.Id}">
+                        <td>
+                            <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
+                        </td>
+                        <td style="text-align: right;">
+                            <lightning:button variant="destructive"
+                                              label="{!$Label.c.Auto_Remove_employee}"
+                                              onclick="{!c.openDeleteModel}" />
+                        </td>
+                    </tr>
+                </aura:iteration>
             </tbody>
         </table>
+
         <aura:set attribute="actions">
             <lightning:button variant="brand"
                               class="slds-m-top--medium"
-                              label="Add" onclick="{!c.openModal}" />
+                              label="{!$Label.c.Auto_Hire_New_Employee}"
+                              onclick="{!c.openModal}" />
         </aura:set>
     </lightning:card>
 
@@ -55,12 +64,13 @@
             <div class="slds-modal__container">
 
                 <header class="slds-modal__header">
-                    <h1>Hire to {!v.OneAccount.Name}</h1>
+                    <h1>{!$Label.c.Auto_Hire_to}&nbsp;{!v.OneAccount.Name}</h1>
                 </header>
+
                 <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
                     <thead>
                     <tr class="slds-text-heading_label">
-                        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                        <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,38 +87,46 @@
                 </table>
                 <footer class="slds-modal__footer">
                     <lightning:button variant="neutral"
-                                      label="Cancel"
-                                      title="Cancel"
-                                      onclick="{! c.closeModal }"/>
+                                      label="{!$Label.c.Auto_Cancel}"
+                                      title="{!$Label.c.Auto_Cancel}"
+                                      onclick="{!c.closeModal}"/>
 
-                    <lightning:button variant="neutral"
-                                      label="Add new employee"
+                    <lightning:button variant="brand"
+                                      label="{!$Label.c.Auto_Hire_New_Employee}"
                                       onclick="{!c.clickNewEmployee}" />
                 </footer>
             </div>
         </section>
+
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
 
     <aura:if isTrue="{!v.IsOpenDeleteModal}">
         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
                  aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+
             <div class="slds-modal__container">
+
                 <header class="slds-modal__header">
-                    <h1>Delete {!v.OneAccount.Name}</h1>
+                    <h1>{!$Label.c.Auto_Fire}&nbsp;{!v.SelectedEmployeeName}</h1>
                 </header>
+
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <h1>Are you sure?</h1>
+                    <h1>{!$Label.c.Auto_Are_You_Sure}</h1>
                 </div>
+
                 <footer class="slds-modal__footer">
                     <lightning:button variant="neutral"
-                                      label="Cancel"
-                                      title="Cancel"
-                                      onclick="{! c.closeDeleteModel }"/>
-                    <lightning:button variant="neutral" label="Delete" onclick="{!c.clickRemoveEmployee}" />
+                                      label="{!$Label.c.Auto_Cancel}"
+                                      title="{!$Label.c.Auto_Cancel}"
+                                      onclick="{!c.closeDeleteModel}"/>
+                    <lightning:button variant="destructive"
+                                      label="{!$Label.c.Auto_Fire}"
+                                      onclick="{!c.clickRemoveEmployee}" />
                 </footer>
             </div>
         </section>
+
         <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
 

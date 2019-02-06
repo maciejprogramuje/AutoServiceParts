@@ -7,13 +7,17 @@
                   action="{!c.handleOneDepartment2}"/>
 
     <aura:if isTrue="{!not(empty(v.OneAccount))}">
+
         <lightning:tabset selectedTabId="departmentsDetails">
-            <lightning:tab label="Department's details" id="departmentsDetails">
+
+            <lightning:tab label="{!$Label.c.Auto_Department_s_Details}" id="departmentsDetails">
                 <c:Auto_DepartmentDetails OneAccount="{!v.OneAccount}"/>
             </lightning:tab>
-            <lightning:tab label="Department's Employees" id="departmentsEmployees">
+
+            <lightning:tab label="{!$Label.c.Auto_Department_s_Employees}" id="departmentsEmployees">
                 <c:Auto_Employees OneAccount="{!v.OneAccount}"/>
             </lightning:tab>
+
         </lightning:tabset>
     </aura:if>
 </aura:component>

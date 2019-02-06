@@ -15,14 +15,19 @@
 
 
     <lightning:recordViewForm aura:id="editForm" recordId="{!v.OneAccount.Id}" objectApiName="Account">
-        <lightning:card iconName="standard:account" title="Details" >
+
+        <lightning:card iconName="standard:account" title="{!$Label.c.Auto_Details}" >
+
             <div class="slds-media slds-m-around_small">
+
                 <div class="slds-media__body">
+
                     <lightning:layout class="slds-hint-parent">
                         <a onclick="{!c.navToRecord}">
                             <h3 class="slds-text-heading_small slds-m-bottom_xx-small"><lightning:outputField fieldName="Name"/></h3>
                         </a>
                     </lightning:layout>
+
                     <lightning:layout multipleRows="true">
                         <lightning:layoutItem padding="around-small" size="6">
                             <div class="custom-box slds-border_bottom"><lightning:outputField fieldName="Name"/></div>
@@ -57,13 +62,14 @@
 
             <aura:set attribute="actions">
 
-                <lightning:button label="Edit"
+                <lightning:button label="{!$Label.c.Auto_Edit}"
                                   class="slds-m-top--medium"
                                   onclick="{!c.navigateToShopEdit}" />
 
                 <lightning:button variant="destructive"
                                   class="slds-m-top--medium"
-                                  label="Delete" onclick="{!c.openModel}" />
+                                  label="{!$Label.c.Auto_Delete}"
+                                  onclick="{!c.openModel}" />
             </aura:set>
         </lightning:card>
     </lightning:recordViewForm>
@@ -75,22 +81,22 @@
             <div class="slds-modal__container">
 
                 <header class="slds-modal__header">
-                    <h1>Delete {!v.OneAccount.Name}</h1>
+                    <h1>{!$Label.c.Auto_Delete}&nbsp;{!v.OneAccount.Name}</h1>
                 </header>
 
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                    <h1>Are you sure?</h1>
+                    <h1>{!$Label.c.Auto_Are_You_Sure}</h1>
                 </div>
 
                 <footer class="slds-modal__footer">
 
                     <lightning:button variant="neutral"
-                                      label="Cancel"
-                                      title="Cancel"
+                                      label="{!$Label.c.Auto_Cancel}"
+                                      title="{!$Label.c.Auto_Cancel}"
                                       onclick="{! c.closeModel }"/>
 
                     <lightning:button variant="neutral"
-                                      label="Delete"
+                                      label="{!$Label.c.Auto_Delete}"
                                       onclick="{!c.deleteContacts}" />
                 </footer>
             </div>

@@ -7,30 +7,35 @@
 
     <aura:registerEvent name="searchEvent" type="c:Auto_SearchEvnt"/>
 
-    <lightning:card title="Department search">
+    <lightning:card title="{!$Label.c.Auto_Department_search}">
         <div class="slds-m-left--small">
             <fieldset class="slds-box slds-theme--default slds-container--small">
                 <form class="slds-form--stacked">
+
                     <lightning:input aura:id="searchForm"
-                                     label="Name"
+                                     label="{!$Label.c.Auto_Name}"
                                      name="expensename"
                                      value="{!v.Name}"
-                                     placeholder="Name"/>
+                                     placeholder="{!$Label.c.Auto_Name}"/>
+
                     <lightning:input aura:id="searchForm"
-                                     label="City"
+                                     label="{!$Label.c.Auto_City}"
                                      name="expenseamount"
                                      value="{!v.City}"
-                                     placeholder="City"/>
+                                     placeholder="{!$Label.c.Auto_City}"/>
+
                     <lightning:input aura:id="searchForm"
-                                     label="Country"
+                                     label="{!$Label.c.Auto_Country}"
                                      name="expenseclient"
                                      value="{!v.Country}"
-                                     placeholder="Country"/>
-                    <lightning:button label="Search"
+                                     placeholder="{!$Label.c.Auto_Country}"/>
+
+                    <lightning:button label="{!$Label.c.Auto_Search}"
                                       class="slds-m-top--medium"
                                       variant="brand"
                                       onclick="{!c.clickSearch}"/>
-                    <lightning:button label="Clear"
+
+                    <lightning:button label="{!$Label.c.Auto_Clear}"
                                       class="slds-m-top--medium"
                                       variant="brand"
                                       onclick="{!c.clickClear}"/>
@@ -39,7 +44,7 @@
         </div>
 
         <aura:set attribute="actions">
-            <lightning:button label="New"
+            <lightning:button label="{!$Label.c.Auto_New}"
                               class="slds-m-top--medium"
                               onclick="{!c.clickNewAccount}"/>
         </aura:set>

@@ -28,13 +28,13 @@
                         type="c:Auto_DepartmentEdit"/>
 
     <aura:if isTrue="{!!empty(v.Accounts)}">
-        <lightning:card title="Department results">
+        <lightning:card title="{!$Label.c.Auto_Department_search_results}">
             <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
                 <thead>
                     <tr class="slds-text-heading_label">
-                        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
-                        <th scope="col"><div class="slds-truncate" title="City">City</div></th>
-                        <th scope="col"><div class="slds-truncate" title="Country">Country</div></th>
+                        <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
+                        <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_City}">{!$Label.c.Auto_City}</div></th>
+                        <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Country}">{!$Label.c.Auto_Country}</div></th>
                     </tr>
                 </thead>
                 <tbody>

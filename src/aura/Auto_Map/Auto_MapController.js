@@ -18,11 +18,11 @@
         if(oneAccount.BillingLatitude != null && oneAccount.BillingLongitude != null) {
             map.flyTo([oneAccount.BillingLatitude, oneAccount.BillingLongitude], 8);
 
-                    allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
-                        .bindPopup(oneAccount.Name + ", " + oneAccount.BillingCity + ", " + oneAccount.BillingCountry)]);
-                    component.set("v.allMarkers", allMarkers);
+            allMarkers = L.featureGroup([L.marker([oneAccount.BillingLatitude, oneAccount.BillingLongitude]).addTo(map)
+                .bindPopup(oneAccount.Name + ", " + oneAccount.BillingCity + ", " + oneAccount.BillingCountry)]);
+            component.set("v.allMarkers", allMarkers);
 
-                    allMarkers.addTo(map);
+            allMarkers.addTo(map);
         }
 
         component.set("v.map", map);
@@ -78,7 +78,7 @@
                 component.set("v.allMarkers", allMarkers);
 
                 allMarkers.addTo(map);
-          }
-          component.set("v.map", map);
-      }
+            }
+        component.set("v.map", map);
+   }
 })
