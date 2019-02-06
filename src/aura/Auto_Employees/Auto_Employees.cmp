@@ -6,33 +6,44 @@
     <aura:attribute name="Employees" type="EmployeesInDepartments__c[]"/>
     <aura:attribute name="Users" type="User[]"/>
     <aura:attribute name="IsOpenNewEmployees" type="Boolean"/>
+    <aura:attribute name="IsOpenDeleteModal" type="Boolean"/>
+    <aura:attribute name="SelectedEmployeeId" type="String"/>
 
-    <aura:handler event="c:Auto_DepartmentResultsEvent"
-                  action="{!c.handleEmployeesFromDepartment}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.handleEmployeesFromDepartment}" />
+    <aura:handler event="c:Auto_DepartmentResultsEvent" action="{!c.handleOneDepartment}"/>
+    <aura:handler name="change" value="{!v.OneAccount}" action="{!c.handleEmployeesFromDepartment}"/>
+    <aura:handler event="force:showToast" action="{!c.handleRefreshAfterToastInfo}" />
+
+
 
     <lightning:card title="Employees">
         <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
             <thead>
-                <tr class="slds-text-heading_label">
-                    <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
-                </tr>
+            <tr class="slds-text-heading_label">
+                <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                <th scope="col"><div class="slds-truncate" title="Action">Action</div></th>
+            </tr>
             </thead>
-                <tbody>
-                    <aura:iteration items="{!v.Employees}"
-                                    var="sel"
-                                    indexVar="ind">
-                        <tr class="slds-hint-parent" id="{!ind}" onclick="{!c.clickShowDetails}" data-index="{!ind}">
-                            <td>
-                                <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
-                            </td>
-                        </tr>
-                    </aura:iteration>
-                </tbody>
+            <tbody>
+            <aura:iteration items="{!v.Employees}"
+                            var="sel"
+                            indexVar="ind">
+                <tr class="slds-hint-parent" onclick="{!c.setCurrentId}" data-id="{!sel.Id}" id="{!sel.Id}">
+                    <td>
+                        <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
+                    </td>
+                    <td>
+                        <lightning:button variant="destructive"
+                                          label="Remove employee"
+                                          onclick="{!c.openDeleteModel}" />
+                    </td>
+                </tr>
+            </aura:iteration>
+            </tbody>
         </table>
-
         <aura:set attribute="actions">
-
-            <lightning:button variant="destructive"
+            <lightning:button variant="brand"
                               class="slds-m-top--medium"
                               label="Add" onclick="{!c.openModal}" />
         </aura:set>
@@ -46,39 +57,59 @@
                 <header class="slds-modal__header">
                     <h1>Hire to {!v.OneAccount.Name}</h1>
                 </header>
-
                 <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
                     <thead>
-                        <tr class="slds-text-heading_label">
-                            <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
-                        </tr>
+                    <tr class="slds-text-heading_label">
+                        <th scope="col"><div class="slds-truncate" title="Name">Name</div></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <aura:iteration items="{!v.Users}"
-                                        var="us"
-                                        indexVar="ind">
-                            <tr class="slds-hint-parent" id="{!ind}" onclick="{!c.clickShowDetails}" data-index="{!ind}">
-                                <td>
-                                    <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
-                                </td>
-                            </tr>
-                        </aura:iteration>
+                    <aura:iteration items="{!v.Users}"
+                                    var="us"
+                                    indexVar="indexedUser">
+                        <tr class="slds-hint-parent" onclick="{!c.clickSelectOneEmployee}" data-id="{!us.Id}" id="{!us.Id}">
+                            <td>
+                                <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
                     </tbody>
                 </table>
-
                 <footer class="slds-modal__footer">
-
                     <lightning:button variant="neutral"
                                       label="Cancel"
                                       title="Cancel"
                                       onclick="{! c.closeModal }"/>
 
                     <lightning:button variant="neutral"
-                                      label="Delete"
-                                      onclick="{!c.newEmployee}" />
+                                      label="Add new employee"
+                                      onclick="{!c.clickNewEmployee}" />
                 </footer>
             </div>
         </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.IsOpenDeleteModal}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h1>Delete {!v.OneAccount.Name}</h1>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <h1>Are you sure?</h1>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning:button variant="neutral"
+                                      label="Cancel"
+                                      title="Cancel"
+                                      onclick="{! c.closeDeleteModel }"/>
+                    <lightning:button variant="neutral" label="Delete" onclick="{!c.clickRemoveEmployee}" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
 
 </aura:component>
