@@ -66,35 +66,35 @@
     },
 
     clickNewEmployee: function(component, event, helper) {
-        console.log('clickNewEmployee');
-        let toastEvent = $A.get('e.force:showToast');
+        if(component.get("v.SelectedEmployeeId") != null){
+            console.log('clickNewEmployee');
+            let toastEvent = $A.get('e.force:showToast');
+            let selectedUserId = component.get("v.SelectedEmployeeId");
+            console.log('SelectedEmployeeId' + selectedUserId);
+            console.log('OneAccount.Id' + component.get("v.OneAccount.Id"));
 
-        let selectedUserId = component.get("v.SelectedEmployeeId");
-        console.log('SelectedEmployeeId' + selectedUserId);
-        console.log('OneAccount.Id' + component.get("v.OneAccount.Id"));
+            let actionAdd = component.get("c.insertEmployee");
+            actionAdd.setParam("accountId", component.get("v.OneAccount.Id"));
+            actionAdd.setParam("userId", selectedUserId);
 
-        let actionAdd = component.get("c.insertEmployee");
-        actionAdd.setParam("accountId", component.get("v.OneAccount.Id"));
-        actionAdd.setParam("userId", selectedUserId);
-
-        actionAdd.setCallback(this, function(response) {
-             let state = response.getState();
-             if (state === "SUCCESS") {
-                     toastEvent.setParams({
-                                           'title': 'Success!',
-                                           'type': 'success',
-                                           'mode': 'dismissable',
-                                           'message': 'Employee was saved'
-                     });
-                     toastEvent.fire();
-             } else {
-                 console.log("newEmployee Failed with state: " + state);
-             }
-        });
-        $A.enqueueAction(actionAdd);
-        component.set("v.IsOpenNewEmployees", false);
-
-
+            actionAdd.setCallback(this, function(response) {
+                 let state = response.getState();
+                 if (state === "SUCCESS") {
+                         toastEvent.setParams({
+                                               'title': 'Success!',
+                                               'type': 'success',
+                                               'mode': 'dismissable',
+                                               'message': 'Employee was saved'
+                         });
+                         toastEvent.fire();
+                         component.set("v.SelectedEmployeeId", null);
+                 } else {
+                     console.log("newEmployee Failed with state: " + state);
+                 }
+            });
+            $A.enqueueAction(actionAdd);
+            component.set("v.IsOpenNewEmployees", false);
+        }
     },
     clickSelectOneEmployee: function(component, event, helper) {
             let selectedSection = event.currentTarget;
