@@ -10,6 +10,9 @@
     <aura:handler event="c:Auto_SearchEvnt"
                   action="{!c.handleSearchDepartment}"/>
 
+    <aura:handler event="c:Auto_DepartmentResultsEvent"
+                  action="{!c.handleOneDepartment}"/>
+
     <aura:registerEvent name="deleteDepartmentEvent"
                         type="c:Auto_DepartmentDeleteEvent"/>
 
@@ -93,7 +96,7 @@
                     <lightning:button variant="neutral"
                                       label="{!$Label.c.Auto_Cancel}"
                                       title="{!$Label.c.Auto_Cancel}"
-                                      onclick="{! c.closeModel }"/>
+                                      onclick="{!c.closeModel}"/>
 
                     <lightning:button variant="neutral"
                                       label="{!$Label.c.Auto_Delete}"
@@ -101,6 +104,8 @@
                 </footer>
             </div>
         </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
     </aura:if>
 
 </aura:component>
