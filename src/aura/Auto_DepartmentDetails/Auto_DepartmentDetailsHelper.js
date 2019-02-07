@@ -15,7 +15,7 @@
              toastEvent.setParams({
                  "title": $A.get("$Label.c.Auto_Error"),
                  "message": $A.get("$Label.c.Auto_No_Geolocation_Data"),
-                 "type": "error"
+                 "type": "warning"
              });
              toastEvent.fire();
          }

@@ -135,18 +135,20 @@
         let selectedSection = event.currentTarget;
         let index1 = selectedSection.dataset.id;
 
-        component.set("v.SelectedEmployeeId", index1);
-    },
-
-    setCurrId: function(component, event){
-        let selectedSection = event.currentTarget;
-        let index1 = selectedSection.dataset.id;
         let allAcc = component.get("v.Employees");
         allAcc.forEach(function (acc) {
             if(acc.Id == index1) {
                 component.set("v.SelectedEmployeeName", acc.User__r.Name);
             }
         })
+
+        component.set("v.SelectedEmployeeId", index1);
+    },
+
+    setCurrId: function(component, event){
+        let selectedSection = event.currentTarget;
+        let index1 = selectedSection.dataset.id;
+
         component.set("v.SelectedEmployeeId", index1);
     },
 

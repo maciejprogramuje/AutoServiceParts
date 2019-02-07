@@ -68,24 +68,30 @@
                 </header>
 
                 <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
+
                     <thead>
-                    <tr class="slds-text-heading_label">
-                        <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <aura:iteration items="{!v.Users}"
-                                    var="us"
-                                    indexVar="indexedUser">
-                        <tr class="slds-hint-parent" onclick="{!c.clickSelectOneEmployee}" data-id="{!us.Id}" id="{!us.Id}">
-                            <td>
-                                <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
-                            </td>
+                        <tr class="slds-text-heading_label">
+                            <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
                         </tr>
-                    </aura:iteration>
+                    </thead>
+
+                    <tbody>
+                        <aura:iteration items="{!v.Users}"
+                                        var="us"
+                                        indexVar="indexedUser">
+
+                            <tr class="slds-hint-parent" onclick="{!c.clickSelectOneEmployee}" data-id="{!us.Id}" id="{!us.Id}">
+                                <td>
+                                    <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
+                                </td>
+                            </tr>
+
+                        </aura:iteration>
                     </tbody>
                 </table>
+
                 <footer class="slds-modal__footer">
+
                     <lightning:button variant="neutral"
                                       label="{!$Label.c.Auto_Cancel}"
                                       title="{!$Label.c.Auto_Cancel}"
@@ -116,10 +122,12 @@
                 </div>
 
                 <footer class="slds-modal__footer">
+
                     <lightning:button variant="neutral"
                                       label="{!$Label.c.Auto_Cancel}"
                                       title="{!$Label.c.Auto_Cancel}"
                                       onclick="{!c.closeDeleteModel}"/>
+
                     <lightning:button variant="destructive"
                                       label="{!$Label.c.Auto_Fire}"
                                       onclick="{!c.clickRemoveEmployee}" />
