@@ -29,6 +29,7 @@
             <thead>
                 <tr class="slds-text-heading_label">
                     <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
+                    <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Username}">{!$Label.c.Auto_Username}</div></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -37,9 +38,15 @@
                                 var="sel"
                                 indexVar="ind">
                     <tr class="slds-hint-parent" onclick="{!c.setCurrentId}" data-id="{!sel.Id}" id="{!sel.Id}">
+
                         <td>
                             <div class="slds-truncate" title="{!sel.User__r.Name}">{!sel.User__r.Name}</div>
                         </td>
+
+                        <td>
+                            <div class="slds-truncate" title="{!sel.User__r.Username}">{!sel.User__r.Username}</div>
+                        </td>
+
                         <td style="text-align: right;">
                             <lightning:button variant="destructive"
                                               label="{!$Label.c.Auto_Remove_employee}"
@@ -67,28 +74,44 @@
                     <h1>{!$Label.c.Auto_Hire_to}&nbsp;{!v.OneAccount.Name}</h1>
                 </header>
 
+
                 <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_fixed-layout">
 
-                    <thead>
-                        <tr class="slds-text-heading_label">
-                            <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
-                        </tr>
-                    </thead>
+                        <aura:if isTrue="{!not(empty(v.Users))}">
 
-                    <tbody>
-                        <aura:iteration items="{!v.Users}"
-                                        var="us"
-                                        indexVar="indexedUser">
+                            <thead>
+                                <tr class="slds-text-heading_label">
+                                    <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Name}">{!$Label.c.Auto_Name}</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="{!$Label.c.Auto_Username}">{!$Label.c.Auto_Username}</div></th>
+                                </tr>
+                            </thead>
 
-                            <tr class="slds-hint-parent" onclick="{!c.clickSelectOneEmployee}" data-id="{!us.Id}" id="{!us.Id}">
-                                <td>
-                                    <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
-                                </td>
-                            </tr>
+                            <tbody>
+                                <aura:iteration items="{!v.Users}"
+                                                var="us"
+                                                indexVar="indexedUser">
 
-                        </aura:iteration>
-                    </tbody>
+                                    <tr class="slds-hint-parent" onclick="{!c.clickSelectOneEmployee}" data-id="{!us.Id}" id="{!us.Id}">
+                                        <td>
+                                            <div class="slds-truncate" title="{!us.Name}">{!us.Name}</div>
+                                        </td>
+
+                                        <td>
+                                            <div class="slds-truncate" title="{!us.Username}">{!us.Username}</div>
+                                        </td>
+                                    </tr>
+
+                                </aura:iteration>
+                            </tbody>
+                    </aura:if>
                 </table>
+
+                <aura:if isTrue="{!empty(v.Users)}">
+
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <h1>{!$Label.c.Auto_No_More_Employees}</h1>
+                    </div>
+                </aura:if>
 
                 <footer class="slds-modal__footer">
 
@@ -97,9 +120,11 @@
                                       title="{!$Label.c.Auto_Cancel}"
                                       onclick="{!c.closeModal}"/>
 
-                    <lightning:button variant="brand"
-                                      label="{!$Label.c.Auto_Hire_New_Employee}"
-                                      onclick="{!c.clickNewEmployee}" />
+                    <aura:if isTrue="{!not(empty(v.Users))}">
+                        <lightning:button variant="brand"
+                                          label="{!$Label.c.Auto_Hire_New_Employee}"
+                                          onclick="{!c.clickNewEmployee}" />
+                    </aura:if>
                 </footer>
             </div>
         </section>

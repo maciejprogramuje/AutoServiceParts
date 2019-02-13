@@ -3,7 +3,7 @@ public with sharing class Auto_SearchEmployeesController {
     public static List<EmployeesInDepartments__c> getEmployess(String departmentId) {
         List<EmployeesInDepartments__c> employees = new List<EmployeesInDepartments__c>();
         try {
-            employees = [SELECT Id, User__c, User__r.Name, Department__c, Department__r.Id FROM EmployeesInDepartments__c WHERE Department__r.Id = :departmentId];
+            employees = [SELECT Id, User__c, User__r.Name, User__r.Username, Department__c, Department__r.Id FROM EmployeesInDepartments__c WHERE Department__r.Id = :departmentId];
         } catch (Exception ex) {
             System.debug('Message after getEmployess' + ex.getMessage());
         }
@@ -15,7 +15,7 @@ public with sharing class Auto_SearchEmployeesController {
     public static List<User> getUsers(Account account) {
         List<User> users = new List<User>();
         users = [
-                SELECT Id, Name, Profile.Name
+                SELECT Id, Name, Username, Profile.Name
                 FROM User
                 WHERE Profile.Name LIKE 'Sales' AND Id NOT IN (SELECT User__c FROM EmployeesInDepartments__c WHERE Department__c = :account.Id)
         ];
