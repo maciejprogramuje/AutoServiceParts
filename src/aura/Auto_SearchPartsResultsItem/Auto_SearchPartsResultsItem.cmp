@@ -1,0 +1,43 @@
+<aura:component description="Auto_SearchPartsResultsItem"
+                implements="force:hasRecordId"
+                access="global"
+                controller="Auto_SearchPartsResultsItem">
+
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+
+    <aura:attribute name="partPrice" type="Decimal"/>
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      layoutType="COMPACT"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      targetError="{!v.recordError}"  />
+
+    <!-- Display a header with details about the record -->
+    <div class="slds-page-header" role="banner">
+        <a href="{! $Site.siteUrlPrefix + '/detail/' + v.simpleRecord.Id}">
+            <p class="slds-text-heading--large">{!v.simpleRecord.Name}</p>
+            <p class="slds-text-heading--medium slds-m-around--small">Lowest price: {!v.partPrice}</p>
+
+            <div style="{!'background-image:url(' + $Resource.Auto_No_Photo + '); width: 181px; height: 181px;'}"></div>
+        </a>
+    </div>
+
+
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                    {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+
+</aura:component>

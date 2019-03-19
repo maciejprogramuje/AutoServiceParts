@@ -274,6 +274,14 @@
                             <option name="name" value="Auto_SearchEmployeesController" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchParts" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchPartsResultsItem" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
@@ -582,6 +590,18 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="Auto_Spinner" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchParts" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchPartsResults" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="Auto_SearchPartsResultsItem" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
